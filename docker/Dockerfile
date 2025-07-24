@@ -93,6 +93,7 @@ COPY --from=sdist /dist/*.whl /tmp/dist/
 RUN buildDeps="" \
   && apt-get update \
   && apt-get install -y --no-install-recommends "$buildDeps" \
+  && apt-get install -y gcc build-essential libffi-dev libssl-dev \
   # remove internal index when internal plugins are separated
   && pip install -U /tmp/dist/*.whl \
   && apt-get purge -y --auto-remove "$buildDeps" \
